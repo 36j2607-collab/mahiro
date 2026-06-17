@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>윤아은 포트폴리오</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Noto Sans KR',sans-serif;
+    background:linear-gradient(
+        135deg,
+        #ffe8f1,
+        #fffaf7,
+        #eaf6ff
+    );
+    color:#333;
+    overflow-x:hidden;
+    transition:.3s;
+}
+
+/* 스크롤 바 */
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    width:0%;
+    height:5px;
+    background:#ff8fb4;
+    z-index:9999;
+}
+
+/* 다크모드 버튼 */
+.dark-toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    border:none;
+    background:white;
+    border-radius:50px;
+    padding:12px 15px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    z-index:999;
+}
+
+/* 다크모드 */
+.dark{
+    background:#1f1f1f;
+    color:white;
+}
+
+.dark .card{
+    background:rgba(40,40,40,.8);
+    color:white;
+}
+
+.dark .dark-toggle{
+    background:#333;
+    color:white;
+}
+
+/* 배경 장식 */
+.bg{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.star{
+    position:absolute;
+    font-size:24px;
+    opacity:.15;
+    animation:float 12s linear infinite;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(100vh);
+    }
+    100%{
+        transform:translateY(-150px);
+    }
+}
+
+/* Hero */
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero-character{
+    width:280px;
+    max-width:75vw;
+    cursor:pointer;
+    transition:.3s;
+    animation:bounce 3s ease-in-out infinite;
+    filter:drop-shadow(0 15px 25px rgba(0,0,0,.15));
+
+    /* 흰 배경 완화 */
+    mix-blend-mode:multiply;
+}
+
+.hero-character:hover{
+    transform:scale(1.05);
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+.hero h1{
+    margin-top:25px;
+    font-size:4rem;
+    color:#ff7ca8;
+}
+
+.hero p{
+    margin-top:10px;
+    opacity:.7;
+    font-size:1.1rem;
+}
+
+.scroll-text{
+    margin-top:20px;
+    color:#ff8fb4;
+    animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:.3;
+    }
+}
+
+/* 공통 */
+section{
+    padding:100px 20px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.5rem;
+    margin-bottom:40px;
+}
+
+/* 카드 */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(12px);
+    border-radius:28px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.emoji{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+/* 플레이리스트 */
+.playlist{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:50px 20px;
+}
+
+/* 등장 애니메이션 */
+.fade{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:3rem;
+}
+
+.section-title{
+    font-size:2rem;
+}
+
+.hero-character{
+    width:220px;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="progress"></div>
+
+<button class="dark-toggle">
+🌙
+</button>
+
+<div class="bg">
+    <div class="star" style="left:10%">⭐</div>
+    <div class="star" style="left:25%;animation-delay:2s;">💗</div>
+    <div class="star" style="left:40%;animation-delay:4s;">⭐</div>
+    <div class="star" style="left:55%;animation-delay:1s;">💖</div>
+    <div class="star" style="left:70%;animation-delay:5s;">⭐</div>
+    <div class="star" style="left:85%;animation-delay:3s;">💗</div>
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<img
+src="123.webp"
+alt="치이카와"
+class="hero-character"
+onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})"
+>
+
+<h1>윤아은</h1>
+
+<p>Welcome to my Portfolio</p>
+
+<div class="scroll-text">
+↓ Click Chiikawa ↓
+</div>
+
+</div>
+
+<!-- ABOUT -->
+
+<section id="about" class="fade">
+
+<h2 class="section-title">
+About Me
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="emoji">👤</div>
+<h3>Name</h3>
+<p>윤아은</p>
+</div>
+
+<div class="card">
+<div class="emoji">🐰</div>
+<h3>My Favorites</h3>
+<p>치이카와</p>
+</div>
+
+<div class="card">
+<div class="emoji">😴</div>
+<h3>Sleep All Day</h3>
+<p>하루종일 잠자기</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FAVORITES -->
+
+<section class="fade">
+
+<h2 class="section-title">
+My Favorites
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="emoji">🍜</div>
+<h3>엽떡</h3>
+<p>먹으면 행복해질 수 있음!</p>
+</div>
+
+<div class="card">
+<div class="emoji">🐰</div>
+<h3>치이카와</h3>
+<p>보는 것만으로도 귀엽고 사랑스러움 폭발</p>
+</div>
+
+<div class="card">
+<div class="emoji">🎮</div>
+<h3>게임</h3>
+<p>여러 노래를 들을 수 있음</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- DREAM -->
+
+<section class="fade">
+
+<h2 class="section-title">
+My Dream
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="emoji">🏆</div>
+<h3>게임 상위 랭커</h3>
+</div>
+
+<div class="card">
+<div class="emoji">🌎</div>
+<h3>먼작귀 세상 입성</h3>
+</div>
+
+</div>
+
+</section>
+
+<!-- PLAYLIST -->
+
+<section class="fade">
+
+<h2 class="section-title">
+추천 플레이리스트
+</h2>
+
+<a
+class="playlist"
+href="https://www.youtube.com/watch?v=ziGLZkisja4"
+target="_blank"
+>
+
+<div class="card">
+
+<div class="emoji">🎵</div>
+
+<h3>
+このふざけた素晴らしき世界は僕の為にある
+</h3>
+
+<p style="margin-top:15px;">
+YouTube에서 듣기 ▶
+</p>
+
+</div>
+
+</a>
+
+</section>
+
+<footer>
+Made with ♡ by 윤아은 ·
+<span id="year"></span>
+</footer>
+
+<script>
+
+/* 연도 */
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+/* 스크롤 진행바 */
+window.addEventListener("scroll",()=>{
+
+const scrollTop =
+document.documentElement.scrollTop;
+
+const scrollHeight =
+document.documentElement.scrollHeight -
+document.documentElement.clientHeight;
+
+const percent =
+(scrollTop / scrollHeight) * 100;
+
+document.querySelector(".progress").style.width =
+percent + "%";
+
+});
+
+/* 다크모드 */
+document.querySelector(".dark-toggle")
+.addEventListener("click",()=>{
+
+document.body.classList.toggle("dark");
+
+});
+
+/* 등장 애니메이션 */
+const observer =
+new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".fade")
+.forEach(el=>observer.observe(el));
+
+</script>
+
+</body>
+</html>
